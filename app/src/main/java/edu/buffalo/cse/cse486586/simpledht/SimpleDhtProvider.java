@@ -137,11 +137,6 @@ public class SimpleDhtProvider extends ContentProvider {
             }
 
         }
-
-
-
-
-
         /// added to forward insert operation if necessary
         try {
             String haskey = genHash(key);
@@ -197,13 +192,7 @@ public class SimpleDhtProvider extends ContentProvider {
 
             else if(predhash.compareTo(myhash)>0 && myhash.compareTo(haskey)>0)
             {
-                //String value = (String) values.get("value");
-                //String filename = key + ".txt";
-                //String string = value;
-                ///FileOutputStream outputStream;
                 try {
-                    // outputStream = openFileOutput(filename, Context.MODE_PRIVATE);
-                    //OutputStream fo = new FileOutputStream(filename);
                     if (context == null)
                         Log.e("context", "null");
                     Log.e("path", context.getFilesDir().getAbsolutePath());
@@ -216,18 +205,6 @@ public class SimpleDhtProvider extends ContentProvider {
                 }
 
             }
-
-
-            /*
-            else if(succhash.compareTo(myhash)>0 &&  haskey.compareTo(myhash)<0)
-            {
-                String fornewSucc =  "insert" + " " + "key" + " "+ key + " "+ string;
-                Log.d("insert_forwarding_forsmaller", "yo, im sending:" + key + "value:" + value + "to :" + succ);
-                new SimpleDhtProvider.ClientTask().executeOnExecutor(AsyncTask.SERIAL_EXECUTOR, fornewSucc, succ);
-
-            }
-
-            */
 
             else {
 
@@ -244,28 +221,6 @@ public class SimpleDhtProvider extends ContentProvider {
         {
             Log.d("hashing", "hashing problem");
         }
-
-        ///
-        /*
-        String value = (String) values.get("value");
-        String filename = key + ".txt";
-        String string = value;
-        FileOutputStream outputStream;
-        try {
-            // outputStream = openFileOutput(filename, Context.MODE_PRIVATE);
-            //OutputStream fo = new FileOutputStream(filename);
-            if (context == null)
-                Log.e("context", "null");
-            Log.e("path", context.getFilesDir().getAbsolutePath());
-            File file = new File(context.getFilesDir(), filename);
-            FileWriter fw =  new FileWriter(file);
-            fw.write(string);
-            fw.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        */
-
 
         return uri;
 
@@ -322,32 +277,6 @@ public class SimpleDhtProvider extends ContentProvider {
         }
 
 
-
-        /*
-        try{
-            String s1 = genHash("11108");
-            Log.d("hash", "for avd0:" + s1 );
-            String s2 = genHash("11112");
-            Log.d("hash", "for avd0:" + s2 );
-            String s3 = genHash("11116");
-            Log.d("hash", "for avd0:" + s3 );
-            String s4 = genHash("11120");
-            Log.d("hash", "for avd0:" + s4 );
-            String s5 = genHash("11124");
-            Log.d("hash", "for avd0:" + s5 );
-            Log.d("hash_compare", "for avd0:1" + s1.compareTo(s1));
-            Log.d("hash_compare", "for avd0:2" + s1.compareTo(s2));
-            Log.d("hash_compare", "for avd0:3" + s1.compareTo(s3));
-            Log.d("hash_compare", "for avd2:3" + s2.compareTo(s3));
-            Log.d("hash_compare", "for avd2:4" + s2.compareTo(s4));
-        }
-
-        catch (Exception ex) {}
-        */
-
-
-
-
        try{Thread.sleep(100); }
        catch (Exception ee) { }
         {
@@ -369,26 +298,8 @@ public class SimpleDhtProvider extends ContentProvider {
             }
         }
 
-
-
-
-
-        ////////
-
-
-
-
-
-
         return false;
     }
-
-    /// delete function
-    //public
-
-
-
-
 
     //public Cursor query(Uri ur)
     public String querystar(String input)
@@ -412,12 +323,6 @@ public class SimpleDhtProvider extends ContentProvider {
                      String valuenow = br.readLine();
                      br.close();
                      selections = valuenow + " ";
-
-                     //String []rw = new String[2];
-                     //rw[0] = selection;
-                     //rw[1] = valuenow;
-                     //mc.addRow(rw);
-
                  }
                  selections = selections.trim();
                  //String fornewSucc =  "insert" + " " + "key" + " "+ haskey + " "+ string;
@@ -430,21 +335,11 @@ public class SimpleDhtProvider extends ContentProvider {
              if(succ.equals(msgin1[2])) return selections;
              else {
                  try {
-                     //String forstarq  = "star" + " "+ "query" + " "+ "askingport" + " "+ portnum + " " +"*";
-                     //String allfiles_succ = new SimpleDhtProvider.ClientTask1().executeOnExecutor(AsyncTask.SERIAL_EXECUTOR, forstarq, succ).get();
-                     //String allfiles_from_succ = new SimpleDhtProvider.ClientTask1().executeOnExecutor(AsyncTask.SERIAL_EXECUTOR, input, succ).get();
-
-                     //Thread.sleep(1000);
                      return selections ;
-                             //+ allfiles_from_succ;
-
                  }
                  catch(Exception ed) { Log.d("client1", "hi" );}
-
               }
-
          }
-
         return "";
     }
 
@@ -792,257 +687,6 @@ public class SimpleDhtProvider extends ContentProvider {
 
         }
 
-    // remove this later
-
-        //////////////
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            /*
-
-            if(selection.compareTo(myhash)<0  && selection.compareTo(predhash)>0 && !selection.equals("*") && !selection.equals("@"))
-             {
-                 Log.d("first" ,"did u come here or not?");
-                 /////// if key presesnt actual query works
-                 String valuenow ="";
-                 try{
-                     Context context =  getContext();
-                     File fin = new File(context.getFilesDir().getPath());
-                     FileReader fr = new FileReader(fin + "/" + selection+ ".txt");
-                     Log.e("file", "inside file: path: " + fin + "/" + selection);
-                     BufferedReader br = new BufferedReader(fr);
-                     valuenow = br.readLine();
-                     br.close();
-                 }
-                 catch (Exception e) {
-                     Log.e("readerror", "unable to read the file");
-                 }
-                 String [] s= new String[2];
-                 s[0] = "key";
-                 s[1] = "value";
-                 MatrixCursor mc = new MatrixCursor(s);
-                 String []rw = new String[2];
-                 rw[0] = selection; Log.d("query_regular", "so it is querying selesction" + selection);
-                 rw[1] = valuenow;  Log.d("query_regular", "so it is querying value" + valuenow);
-                 mc.addRow(rw);
-                 return mc;
-                 /////////////// actual query ends here
-             }
-
-         else if( (succ.isEmpty() || succ.equals("") || pred.equals("") || succ.equals(portnum))   && !selection.equals("*") && !selection.equals("@"))
-        {
-            Log.d("first11" ,"did u come here or not?");
-            /////// if key presesnt actual query works
-            String valuenow ="";
-            try{
-                Context context =  getContext();
-                File fin = new File(context.getFilesDir().getPath());
-                FileReader fr = new FileReader(fin + "/" + selection+ ".txt");
-                Log.e("file", "inside file: path: " + fin + "/" + selection);
-                BufferedReader br = new BufferedReader(fr);
-                valuenow = br.readLine();
-                br.close();
-            }
-            catch (Exception e) {
-                Log.e("readerror11", "unable to read the file");
-            }
-            String [] s= new String[2];
-            s[0] = "key";
-            s[1] = "value";
-            MatrixCursor mc = new MatrixCursor(s);
-            String []rw = new String[2];
-            rw[0] = selection; Log.d("query_regular11", "so it is querying selesction" + selection);
-            rw[1] = valuenow;  Log.d("query_regular11", "so it is querying value" + valuenow);
-            mc.addRow(rw);
-            return mc;
-            /////////////// actual query ends here
-        }
-
-
-            else if(selection.equals("@"))
-            {
-                String test_s = ""; String test_v = "";
-                Log.d("inside@", "now what");
-                String valuenow ="";
-                String [] s= new String[2];
-                s[0] = "key";
-                s[1] = "value";
-                MatrixCursor mc = new MatrixCursor(s);
-                Log.d("inside@", "now what1");
-                try{
-                    Context context =  getContext();
-                    Log.d("inside@", "now what2");
-                    File fin = new File(context.getFilesDir().getPath());
-                    Log.d("inside@", "now what3");
-                    File [] listoffiles = fin.listFiles();
-                    Log.d("inside@", "now what3");
-                    for(int i=0; i< listoffiles.length; i++)
-                    {
-                        //listoffiles[i].getName()
-                        String eachfile= listoffiles[i].getName();
-                        Log.d("inside@", "now what4");
-                        FileReader fr = new FileReader(fin + "/" + eachfile); /// removed + .txt here
-                        Log.e("file", "inside file: path: " + fin + "/" + eachfile);
-                        BufferedReader br = new BufferedReader(fr);
-                        valuenow = br.readLine();
-                        br.close();
-                        Log.d("inside@", "now what5");
-                        String []rw = new String[2];
-                        eachfile = eachfile.substring(0, eachfile.lastIndexOf('.'));
-                        rw[0] = eachfile; test_s = test_s + eachfile +" "; Log.d("@_each",  "test_s"+  test_s);
-                        rw[1] = valuenow;  test_v = test_v + valuenow +" "; Log.d("@_each",  "test_v"+  test_v);
-                        mc.addRow(rw);
-
-                    }
-                    Log.d("@",  "all selections:" + test_s + "all values:" +  test_v);
-                    return mc;
-                }
-                catch (Exception e) {
-                    Log.e("readerror", "unable to read the file");
-                }
-
-                /*
-                String [] s= new String[2];
-                s[0] = "key";
-                s[1] = "value";
-                MatrixCursor mc = new MatrixCursor(s);
-                String []rw = new String[2];
-                rw[0] = selection;
-                rw[1] = valuenow;
-                mc.addRow(rw);
-                */
-                //Log.d("@",  "all selections:" + test_s + "all values:" +  test_v);
-                //return mc;
-                /////////////// actual query ends here
-
-        /////////////////////
-           /// /
-            /*
-             }
-
-            else if(selection.equals("*"))
-            {
-                Log.d("inside_star", "hi star  wassup?");
-                if(succ.isEmpty() || succ.equals(""))
-                {
-                    String test_s = "";
-                    String test_v = "";
-                    Log.d("inside@", "now what");
-                    String valuenow = "";
-                    String[] s = new String[2];
-                    s[0] = "key";
-                    s[1] = "value";
-                    MatrixCursor mc = new MatrixCursor(s);
-                    try {
-                        Context context = getContext();
-                        File fin = new File(context.getFilesDir().getPath());
-                        File[] listoffiles = fin.listFiles();
-                        for (int i = 0; i < listoffiles.length; i++) {
-                            //listoffiles[i].getName()
-                            String eachfile = listoffiles[i].getName();
-                            FileReader fr = new FileReader(fin + "/" + eachfile);
-                            Log.e("file", "inside file: path: " + fin + "/" + eachfile);
-                            BufferedReader br = new BufferedReader(fr);
-                            valuenow = br.readLine();
-                            br.close();
-
-                            String[] rw = new String[2];
-                            eachfile = eachfile.substring(0, eachfile.lastIndexOf('.'));
-                            rw[0] = eachfile;
-                            test_s = test_s + eachfile + " ";
-                            rw[1] = valuenow;
-                            test_v = test_v + valuenow + " ";
-                            mc.addRow(rw);
-
-                        }
-                        return mc;
-                    } catch (Exception e) {
-                        Log.e("readerror", "unable to read the file");
-                    }
-
-                    //return mc;
-                }
-
-
-                String forstarq  = "star" + " "+ "query" + " "+ "askingport" + " "+ portnum + " " +"*";
-                String all_dht_files = querystar(forstarq);
-                Log.d("hehe_final_star:",all_dht_files);
-
-
-                /////////////// actual query ends here
-            }
-
-
-
-
-            else {
-                Log.d("are you here", "yes");
-                String fornewSucc =  "query" + " " + "key" + " "+ selection + " "+  "originalqueryfromport:" + " " + query_portnum + " "+0; // special char 0 for local regular query  1 for @, 2 for *
-                new SimpleDhtProvider.ClientTask().executeOnExecutor(AsyncTask.SERIAL_EXECUTOR, fornewSucc, succ);
-
-            }
-
-
-
-        //} catch(Exception eeec) {Log.d("queryproblem" ,"some is not right with query");}
-
-
-
-
-        /////// if key presesnt actual query works
-        String valuenow ="";
-        try{
-            Context context =  getContext();
-            File fin = new File(context.getFilesDir().getPath());
-            FileReader fr = new FileReader(fin + "/" + selection+ ".txt");
-            Log.e("file", "inside file: path: " + fin + "/" + selection);
-            BufferedReader br = new BufferedReader(fr);
-            valuenow = br.readLine();
-            br.close();
-        }
-        catch (Exception e) {
-            Log.e("readerror", "unable to read the file");
-        }
-        String [] s= new String[2];
-        s[0] = "key";
-        s[1] = "value";
-        MatrixCursor mc = new MatrixCursor(s);
-        String []rw = new String[2];
-        rw[0] = selection;
-        rw[1] = valuenow;
-        mc.addRow(rw);
-        return mc;
-        /////////////// actual query ends here
-        //Log.v("query", selection);
-        //return null;
-
-
-        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-        //commented previous work till here
-        */
-
-
-
         return null;
     }
 
@@ -1079,15 +723,6 @@ public class SimpleDhtProvider extends ContentProvider {
                return  s11.compareTo(s22);
            }
            catch(Exception exc) {Log.d("genhash", "gen hash here too");}
-            /*
-            String [] s11 = s1.split(" "); String [] s22 = s2.split(" ");
-            int snum1 = Integer.parseInt(s11[1]); int snum2 = Integer.parseInt(s22[1]);
-            int prcesnum1 = Integer.parseInt(s11[2]); int prcesnum2 = Integer.parseInt(s22[2]);
-            if(snum1 == snum2)
-                return prcesnum1-prcesnum2;
-            else
-                return snum1-snum2;
-                */
             return  0;
         }
     }
@@ -1121,13 +756,6 @@ public class SimpleDhtProvider extends ContentProvider {
                     String [] msgr = msg.split(" ");
                     Log.d("wtf",  "what the fuck server?2");
                     Log.d("input_server" , "from server input message" + msg);
-
-                    /// check for insert command
-                    //String fornewSucc =  "insert" + " " + "insertcomingfrom" + " "+ portnum + " "+ string;)
-                    //String fornewSucc =  "insert" + " " + "key" + " "+ key + " "+ string;
-
-                    // for query
-                    // String ask_others = "query" + " " + selection;
                     if(msgr.length == 2 && msgr[0].equals("query"))
                     {
 
@@ -1229,46 +857,7 @@ public class SimpleDhtProvider extends ContentProvider {
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
-
-
-                        ////
-                        /*
-                        ContentValues cv = new ContentValues();
-                        cv.put("key", (msgr[2]));
-                        String to_be_stored = msgr[3]; //rcvmsg[0]
-                        cv.put("value", to_be_stored);
-                        //GroupMessengerProvider  gmprovider  = new GroupMessengerProvider();
-                        insert(mUri, cv);
-                        */
-                        ////
                     }
-
-
-
-                    ///  for query protocol
-
-
-                    ///////////// check for insert command ends here
-
-                    ///String fornewSucc =  "query" + " " + "key" + " "+ selection + " "+  "originalquery fromport:" + " " + query_portnum + " "+0;
-
-                    ////////////////////////////////////
-
-                    /*
-                    if(msgr.length == 6 && msgr[0].equals("query"))
-                    {
-                        String query = msgr[2];
-                        query_portnum = msgr[4];
-                        Log.d("query", "someone asking for query");
-                    }
-                         */
-
-                    ///////////////////////////////////
-
-
-
-
-
                     Log.d("portnum", "my portnum:" + portnum);
                     if(portnum.equals("11108")) {
                         /////////////////
@@ -1335,40 +924,6 @@ public class SimpleDhtProvider extends ContentProvider {
                         Log.d("brandnew", "my brandnew info" + "my portnum:" + portnum + "brandnewpred" + pred);
                     }
                     }
-
-
-
-                    ////
-
-
-
-
-
-
-
-
-
-                   /*
-                    publishProgress(msg);
-                    //snum++;
-                    ContentValues cv = new ContentValues();
-                    cv.put("key", Integer.toString(snum));
-                    cv.put("value", msg);
-                    //GroupMessengerProvider  gmprovider  = new GroupMessengerProvider();
-                    ContentResolver resolver = getContentResolver();
-                    resolver.insert(mUri, cv);
-                    snum++;
-                    Log.e("seq", Integer.toString(sequencenum));
-                    */
-
-                    //////////testing
-
-                    //String ack = "OK msg recieved";
-                    //DataOutputStream doss = new DataOutputStream(s.getOutputStream());
-                    //doss.writeUTF(ack);
-                    //doss.flush();
-
-
                     s.close();
                 }
 
